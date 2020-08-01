@@ -1,4 +1,10 @@
-# Code, formal methods and life
+---
+--
+title: Formalized Knowledge
+--
+---
+
+# Formalized Knowledge
 
 [TOC]
 
