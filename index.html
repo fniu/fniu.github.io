@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>Formalized Knowledge - Fel Nil</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+<title>Formalized Knowledge - Fel Nil</title><link href='https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' /><link href='https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
@@ -155,543 +155,473 @@ mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 
-/* --------- */
-/* Variables */
-/* --------- */
+@include-when-export url(https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext);
+@include-when-export url(https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext);
 
 :root {
-
-/* Fonts */
-  --ff-sans: -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", "Helvetica Neue", "Helvetica", "Arial", 
-    "Roboto", "Ubuntu", "Segoe UI", "Fira Sans", "Droid Sans", sans-serif;
-  --ff-serif: "Ivy Journal", "Adobe Caslon Pro", 
-    "Goudy Old Style", "Athelas", "Californian FB", "Georgia Pro", Georgia, serif;
-  --ff-disp: "SangBleu Empire", "F37 Bella", "acta-display", 
-    "Questa Grande", "QuestaGrande", "Didot", "Didonesque", 
-    "Georgia Pro", Georgia, serif;
-  --ff-disp-sm: "SangBleu Kingdom", "Questa", "Georgia Pro", Georgia, serif;
-
-  --f-sml:  0.875rem;
-  --f-med:  1rem;    
-  --f-semi: 1.25rem; 
-  --f-lrg:  1.5rem;  
-  --f-xlg:  2rem;    
-  --f-2xl:  3rem;    
-  --f-hero: 3.75rem; 
-  --f-xhr:  4.5rem;  
-  --f-2xh:  6rem;    
-
-  --f-weight: 400;
-  --f-line-height: 1.5;
-
-/* Lengths */
-
-  --unit: 0.625rem;
-  --u2: calc(2 * var(--unit) );
-  --u3: calc(3 * var(--unit) );
-  --u4: calc(4 * var(--unit) );
-  --u6: calc(6 * var(--unit) );
-  --u8: calc(8 * var(--unit) );
-
-  --content: 70rem;
-  --measure: 33em;
-
-/* Colours */
-
-  --grey1: #333;
-  --grey2: #5a5a5a;
-  --grey3: #b2b2b2;
-  --grey4: #d0d0d0;
-  --grey5: #f6f6f6;
-
-  --gold-dark: #a58e19;
-  --gold-bright: #FFD81E;
-  --gold-light: #E5CF67;
-
+	--control-text-color: #777;
 }
 
-/* ---- */
-/* Base */
-/* ---- */
+/**
+ * forked from pixyll.com
+ * MIT license
+ */
 
-* {
-  box-sizing: border-box
+h1,
+.h1,
+.f1 {
+	font-size: 2rem;
+	line-height: 2.5rem;
 }
-
-*:focus {
-  background-color: var(--gold-bright);
-  box-shadow: 0 0 0 var(--unit) var(--gold-bright);
-  outline: none
+h2,
+.h2,
+.f2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
 }
-
-body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,dl,dd,ol,ul,figure {
-  margin: 0;
-  padding: 0
+h3,
+.h3,
+.f3 {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
 }
-
-html,body {
-  height: 100%
-}
-
-html {
-  font-size: 14px
-}
-
-@media screen and (orientation: portrait) and (min-width: 1024px) {
-  html {
-    font-size:16px
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 1440px) {
-  html {
-    font-size:16px
-  }
-}
-@media screen and (min-width: 2000px) {
-  html {
-    font-size:20px
-  }
-}
-@media screen and (min-width: 2800px) {
-  html {
-    font-size:24px
-  }
-}
-
-body {
-  font-family: var(--ff-sans);
-  line-height: 1.5;
-  color: var(--grey1);
-  background-color: white;
-  -webkit-text-size-adjust: 100%;
-  font-feature-settings: "kern" 1,"liga" 1,"calt" 1,"pnum" 1,"tnum" 0,"onum" 1,"lnum" 0,"dlig" 0;
-  font-kerning: normal;
-  text-rendering: optimizeLegibility
-}
-
-img {
-  max-width: 100%;
-  vertical-align: middle
-}
-
-figure>img {
-  display: block;
-  margin: 0 auto
-}
-
-figcaption {
-  font-size: var(--f-sml);
-  text-align: center
-}
-
-h1,h2,h3,h4,blockquote {
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale
-}
-
-a {
-  color: var(--grey2);
-  text-decoration: none;
-  background-color: transparent;
-  background-image: -webkit-linear-gradient(transparent -300%, currentColor 600%);
-  background-image: linear-gradient(transparent -300%, currentColor 600%);
-  text-decoration: none;
-  background-repeat: no-repeat;
-  background-size: 100% 1px;
-  background-position: 0 100%;
-  transition: all 0.2s ease-in-out
-}
-
-a:hover {
-  color: black
-}
-
-/* ---------- */
-/* Typography */
-/* ---------- */
-
-i, em {
-  font-style: italic;
-}
-
-b, strong {
-  font-weight: 600;
-}
-
-small {
-  font-size: var(--f-sml);
-}
-
-big {
-  font-size: var(--f-semi)
-}
-
-p {
-  font-family: var(--ff-serif);
-  font-size: 1.25rem;
-  line-height: 1.7;
-  margin: 1.25em 0;
-}
-
-h6, thead {
-  font-size: var(--f-sml);
-  text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  margin: 1.5em 0 1em;
-}
-
-h5 {
-  font-family: var(--ff-serif);
-  font-size: var(--f-semi);
-  margin: 1.5em 0 1em;
-  font-style: italic;
-  font-weight: 400;
-}
-
-h5::after {
-  content: '—'
-}
-
-@media screen and (min-width: 480px) {
-  h5 {
-    font-size:var(--f-lrg)
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  h4 {
-    font-size:var(--f-xlg)
-  }
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul,
+pre[cid],
+div[cid],
+#typora-source {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
 }
 
 h4 {
-  font-size: var(--f-lrg);
-  line-height: 1.25;
-  margin: 1em 0 0.5em;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.125em;
+	font-size: 1.13rem;
 }
+/*
+ Pixyll
+ A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.
+ Best served with BASSCSS (http://jxnblk.github.io/basscss)
+ Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander MIT License http://opensource.org/licenses/MIT
 
-@media screen and (min-width: 1440px) {
-  h4 {
-    font-size:var(--f-xlg)
-  }
+*/
+
+body {
+	font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", "STSong", Serif;
+	line-height: 1.5rem;
+	font-weight: 400;
 }
-
-@media screen and (min-width: 1024px) {
-  h3 {
-    font-size:var(--f-xlg)
-  }
-}
-
-h3 {
-  font-family: var(--ff-serif);
-  font-size: var(--f-lrg);
-  line-height: 1.25;
-  margin: 1em 0 0.5em;
-  font-weight: 200;
-}
-
-@media screen and (min-width: 480px) {
-  h3 {
-    font-size:var(--f-xlg);
-    line-height: 1
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  h3 {
-    font-size:var(--f-2xl)
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  h3 {
-    font-size:var(--f-hero)
-  }
-}
-
-h2 {
-  font-size: var(--f-xlg);
-  line-height: 1.25;
-  margin: 1em 0 0.5em;
-  font-weight: 200;
-  letter-spacing: 0.1em;
-}
-
-@media screen and (min-width: 480px) {
-  h2 {
-    font-size:var(--f-2xl);
-    line-height: 1
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  h2 {
-    font-size:var(--f-hero);
-    font-weight: 100;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  h2 {
-    font-size:var(--f-xhr);
-  }
-}
-
-h1 {
-  font-family: var(--ff-disp-sm);
-  font-size: var(--f-xlg);
-  line-height: 1.25;
-  margin: 1em 0 0.5em;
-}
-
-@media screen and (min-width: 480px) {
-  h1 {
-    font-family: var(--ff-disp);
-    font-size:var(--f-hero);
-    line-height: 1
-    font-weight: 400;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  h1 {
-    font-size:var(--f-xhr);
-    letter-spacing: -0.01em;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  h1 {
-    font-size:var(--f-2xh);
-    font-weight: 200;
-  }
-}
-
-/* ------ */
-/* Layout */
-/* ------ */
 
 #write {
-  max-width: var(--content);
-  width: 100%;
-  margin: 0 auto;
-  padding-left: var(--u2);
-  padding-right: var(--u2);
+	max-width: 914px;
+	color: #333;
 }
 
-@media screen and (min-width: 768px) {
-  #write {
-    padding-left: var(--u4);
-    padding-right: var(--u4)
-  }
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
 }
 
-p {
-  max-width: var(--measure);
-}
-
-blockquote {
-  font-family: var(--ff-serif);
-  font-style: italic;
-}
-
-blockquote p {
-  font-size: 1.5em;
-}
-
-/* Peekout / peekin */
-
-blockquote {
-  margin-left: 0;
-  margin-right: 0
-}
-
-@media screen and (min-width: 1440px) {
-  blockquote {
-    margin-left: var(--u4);
-    margin-right: var(--u4)
-  }
-}
-
-h5 {
-  margin-left: 0;
-  margin-right: 0
-}
-
-@media screen and (min-width: 1440px) {
-  h5 {
-    margin-left: calc(-1 * var(--u4));
-    margin-right: calc(-1 * var(--u4))
-  }
-}
-
-ul, ol {
-  max-width: var(--measure);
-  margin-left: var(--u4);
-}
-
-hr {
-  margin: var(--u8) 0;
-}
-
-table {
-  margin: var(--u4) 0;
-}
-
-pre, .CodeMirror {
-  background-color: var(--grey5);
-  padding: var(--unit);
-}
-
-#write input[type="checkbox"] {
-  margin: 0.75rem -1.5rem;
+@media only screen and (min-width: 1700px) {
+	#write {
+		max-width: 1200px;
+	}
 }
 
 img {
-  width: 100%;
-  height: auto;
+	width: auto;
+	max-width: 100%;
+}
+body {
+	font-size: 1.5rem;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
-a.md-toc-inner {
-  line-height: 1em;
-  margin: 0.5em 0;
+.ty-table-edit {
+	background: #ededed;
 }
 
+table {
+	width: 100%;
+	font-size: 1.125rem;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+	padding: 12px;
+	line-height: 1.2;
+	vertical-align: top;
+	border-top: 1px solid #333;
+}
+table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #333;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+table > tbody + tbody {
+	border-top: 2px solid #333;
+}
+p {
+	font-weight: 300;
+	line-height: 1.5;
+}
+abbr {
+	border-bottom: 1px black dotted;
+	cursor: help;
+}
+pre,
+code {
+	font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code,
+.md-fences  {
+	color: #7a7a7a;
+}
+
+.md-fences {
+	padding: 1.125em;
+	margin-bottom: 0.88em;
+	font-size: 1rem;
+	border: 1px solid #7a7a7a;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+blockquote {
+	padding: 1.33em;
+	font-style: italic;
+	border-left: 5px solid #7a7a7a;
+	color: #555;
+}
+blockquote em {
+	color: #000;
+}
+blockquote footer {
+	font-size: .85rem;
+	font-style: normal;
+	background-color: #fff;
+	color: #7a7a7a;
+	border-color: transparent;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: "Lato", 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 1em 0 0.5em;
+}
+@media screen and (min-width: 48em) {
+	.h1,
+	h1 {
+		font-size: 3.250rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.298rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.625rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+	#write>h4.md-focus:before,
+	#write>h5.md-focus:before,
+	#write>h6.md-focus:before{
+		top: 1px;
+	}
+	.p,
+	p,
+	li {
+		font-size: 1.25rem;
+		line-height: 1.8;
+	}
+	table {
+		font-size: 1.25rem;
+	}
+}
+@media (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+}
+@media screen and (min-width: 64em) {
+	.h1,
+	h1 {
+		font-size: 4.498rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.29rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.9rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.591rem;
+	}
+	#write>h4.md-focus:before{
+		top:4px;
+	}
+}
+a {
+	color: #463F5C;
+	text-decoration: underline;
+}
+
+#write {
+	padding-top: 2rem;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	border: 0px;
+
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+
+	margin-left: -30px;
+	margin-bottom: 2em;
+	margin-top: -2010px;
+	padding-top: 2000px;
+	padding-bottom: 10px;
+	line-height: 1.5em;
+	color: #7a7a7a;
+	background-color: #fafafa;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	clear: both;
+	padding-left: 0;
+	font-size:1.125rem;
+}
+.md-image>.md-meta {
+	color: #463F5C
+}
 .footnotes {
-  font-size: var(--f-sml);
-  padding: var(--u4) 0 1em;
-  border-top: 1px solid var(--grey4);
-  margin-top: var(--u4);
+	font-size:1.1rem;
+}
+.md-tag {
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+}
+.code-tooltip {
+	background: white;
+}
+.code-tooltip-content {
+	font-size: 1.1rem;
 }
 
-/*Outlines*/
-
-.outline-content {
-  padding: 0.5em var(--u2);
+.task-list{
+	padding-left: 0;
 }
 
-.outline-h2 > .outline-item {
-  padding-left: var(--unit);
-}
-.outline-h3 > .outline-item {
-  padding-left: var(--u2);
-}
-.outline-h4 > .outline-item {
-  padding-left: var(--u3);
+.md-task-list-item {
+	padding-left:34px;
 }
 
-.outline-item {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+.md-task-list-item > input{
+	width: 1.25rem;
+	height: 1.25rem;
+	display: block;
+	-webkit-appearance: initial;
+	top: -0.2rem;
+	margin-left: -1.6em;
+	margin-top: calc(1rem - 7px);
+	border: none;
 }
 
-/*Sidebar*/
-
-.info-panel-tab-wrapper {
-  font-family: var(--ff-sans);
+.md-task-list-item > input:focus{
+	outline: none;
+	box-shadow: none;
 }
 
-.active-tab-files #info-panel-tab-file .info-panel-tab-border,
-.active-tab-outline #info-panel-tab-outline .info-panel-tab-border {
-  height: 1px;
+.md-task-list-item > input:before{
+	border: 1px solid #555;
+	border-radius: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
 }
 
-/*Megamenu*/
-
-.megamenu-menu a,
-.dropdown a {
-  background-image: none;
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #333;
+	border-width: 2px;
+	display:inline-block;
+	transition: background-color 200ms ease-in-out;
 }
 
-.megamenu-menu ul, .megamenu-menu ol,
-.dropdown ul, .dropdownol {
-  list-style: none;
-  margin-left: 0;
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
 }
 
-.megamenu-menu-list li a {
-  display: inline-block;
-  width: 100%;
-  padding-top: var(--u2);
-  padding-bottom: var(--u2);
-  position: relative;
-  font-size: var(--f-med);
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.4375rem;
+	left: 0.28125rem;
+	width: 0.9375rem;
+	height: 0.5rem;
+	border: 3px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
 }
 
-.megamenu-menu-list li a span {
-  position: absolute;
-  top: 0;
+.md-tag {
+	color:inherit;
 }
 
-.megamenu-menu-panel h1 {
-  font-family: var(--ff-sans);
-  font-size: var(--f-2xl);
-  font-weight: 400;
-  line-height: 1em;
-  letter-spacing: 0.05em;
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
 }
 
-@media screen and (min-width: 768px) {
-  .megamenu-menu-panel h1 {
-    font-family: var(--ff-sans);
-    font-size: var(--f-hero);
-    font-weight: 200;
-    line-height: 1em;
-    letter-spacing: 0.1em;
-  }
+#typora-sidebar {
+	font-size:1rem !important;
 }
 
-.megamenu-menu-panel {
-  max-width: var(--content);
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 var(--u4);
+.html-for-mac #typora-sidebar {
+	background-color:white;
 }
 
-/*Form elements*/
-
-input:focus, button:focus, select:focus, textarea:focus {
-  background-color: white;
-  outline: var(--unit) var(--gold-bright);
+.outline-content li, .outline-content ul {
+	font-size:1rem !important;
 }
 
-/*Notifications*/
-
-#md-notification {
-  border: none;
-  max-width: var(--measure);
-  color: black;
-  box-shadow: 0 0 0 1px;
-  padding: var(--u2) 0;
-  left: auto;
-  right: var(--u2);
+.outline-title {
+	line-height: inherit;
+	margin-top: 10px;
 }
 
-.typora-node.pin-outline #md-searchpanel,
-.typora-node.pin-outline #md-notification {
-  left: auto;
+.outline-expander {
+	width: 18px;
 }
 
-#md-notification p {
-  font-family: var(--ff-sans);
-  text-align: left;
+.outline-expander:before {
+ 	content: "+";
+	font-family: inherit;
+	color: rgb(108, 108, 108); 
+  	font-size: 1.5rem;
+ 	top: 0.1rem;
 }
 
-/*Source*/
-
-#typora-source *:focus {
-  background-color: white;
+.outline-expander:hover:before {
+	content: "+";
 }
 
+.outline-item-open>.outline-item>.outline-expander:before{
+	content: "-";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.os-windows #typora-source {
+	font-family: inherit;
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.md-diagram-panel {
+	margin-top: 24px;
+	margin-left: -1.2em;
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -3.4em;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
 
 
 </style>
 </head>
 <body class='typora-export os-windows' >
-<div  id='write'  class = ''><h1><a name="formalized-knowledge" class="md-header-anchor"></a><span>Formalized Knowledge</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#formalized-knowledge">Formalized Knowledge</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" href="#about">About</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n5"><a class="md-toc-inner" href="#blogs">Blogs</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n6"><a class="md-toc-inner" href="#books">Books</a></span></p></div><h2><a name="about" class="md-header-anchor"></a><span>About</span></h2><h2><a name="blogs" class="md-header-anchor"></a><span>Blogs</span></h2><h2><a name="books" class="md-header-anchor"></a><span>Books</span></h2><ul><li><span>(WIP) </span><a href='https://fniu.github.com/specifying-systems-cn'><span>如何描述系统 - a Chinese translation of </span><em><span>Specifying Systems</span></em></a><span> | </span><a href='https://fniu.github.com/specifying-systems-cn/specifying-systems-cn.pdf'><span>PDF</span></a></li></ul><br><br><hr /><center> Copyright © 2020 Fei Niu </center><p>&nbsp;</p></div>
+<div  id='write'  class = ''><h1><a name="formalized-knowledge" class="md-header-anchor"></a><span>Formalized Knowledge</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#formalized-knowledge">Formalized Knowledge</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" href="#about">About</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n5"><a class="md-toc-inner" href="#blogs">Blogs</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n6"><a class="md-toc-inner" href="#books">Books</a></span></p></div><h2><a name="about" class="md-header-anchor"></a><span>About</span></h2><h2><a name="blogs" class="md-header-anchor"></a><span>Blogs</span></h2><h2><a name="books" class="md-header-anchor"></a><span>Books</span></h2><ul><li><span>(WIP) </span><a href='https://fniu.github.com/specifying-systems-cn'><span>如何描述系统 - a Chinese translation of </span><em><span>Specifying Systems</span></em></a><span> | </span><a href='https://fniu.github.com/specifying-systems-cn/specifying-systems-cn.pdf'><span>PDF</span></a></li></ul><br><br><p>&nbsp;</p><hr><center> Copyright © 2020 Fei Niu </center><p>&nbsp;</p></div>
 </body>
 </html>

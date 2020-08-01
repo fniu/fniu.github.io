@@ -20,7 +20,9 @@ title: Formalized Knowledge - Fel Nil
 
 <br>
 
-------
+
+
+<hr>
 
 <center> Copyright © 2020 Fei Niu </center>
 
