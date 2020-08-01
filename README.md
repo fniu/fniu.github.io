@@ -20,5 +20,7 @@ title: Formalized Knowledge
 
 <br>
 
+------
+
 <center> Copyright © 2020 Fei Niu </center>
 
