@@ -1,6 +1,4 @@
-# FIL NIL
-
-It is a personal website.
+# Code, formal methods and life
 
 [TOC]
 
