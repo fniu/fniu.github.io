@@ -1,21 +1,11 @@
----
---
-title: Formalized Nebula - formal methods, code and more
---
----
+# fniu.github.io
 
-# Formalized Nebula
+The personal webpages to books, blogs and other stuff of mine.
 
-## Books
+[https://www.felnil.com](https://www.felnil.com)
 
-- (WIP) [如何描述系统 - a Chinese translation of _Specifying Systems_](https://fniu.github.com/specifying-systems-cn) | [PDF](https://github.com/fniu/specifying-systems-cn/raw/master/specifying-systems-cn.pdf)
 
-## Blogs
+Copyright © 2020 Fei Niu
 
-<br>
-
-<br>
-
-<hr><center><small>Copyright © 2020 Fei Niu</small></center>
 
 
