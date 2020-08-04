@@ -774,7 +774,7 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <div class="details">
 <span id="author" class="author">Fel Nil</span><br>
 <span id="email" class="email"><a href="mailto:me@felnil.com">me@felnil.com</a></span><br>
-<span id="revdate">2020年07月29日</span>
+<span id="revdate">2020年07月</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">目录</div>
@@ -801,7 +801,8 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <h2 id="_前言">前言</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>想去翻译这本书，主要是因为笔者从事形式化相关工作，能够在学习TLA+语言的同时分享知识。再进一步，用类似语言去重写书中的例子，做为练习。</p>
+<p>想去翻译这本书，主要是因为笔者从事形式化相关工作，能够在学习TLA+语言的
+同时分享知识。再进一步，用类似语言去重写书中的例子，做为练习。</p>
 </div>
 </div>
 </div>
@@ -833,7 +834,94 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 </div>
 <div class="sect2">
 <h3 id="_谓词逻辑">1.3. 谓词逻辑</h3>
-
+<div class="paragraph">
+<p>有了集合之后，就自然而然地想去声明某个公式对于一个集合中所有的元素都为真，或者只对一个集合中某些元素为真。谓词逻辑（predicate logic）相对于命题逻辑， 增加了两个量词（quantifiers）：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(\forall\) 全称量词</p>
+</li>
+<li>
+<p>\(\exists\) 存在量词</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>公式 \(\forall x \in S : F\) 表示公式 \(F\) 对于集合S中<strong>每一个</strong>元素来说都为真。例如，\(\forall n \in Nat : n + 1 &gt; n\) 表示公式 \(n + 1 &gt; n\) 对于每一个自然数来说都为真。该公式确实为真。</p>
+</div>
+<div class="paragraph">
+<p>公式 \(\exists x \in S : F\) 表示公式 \(F\) 对于集合S中<strong>至少一个</strong>元素x来说都为真。例如，\(\exists n \in Nat : n^2 = 2\) 表示存在一个自然数，该自然数的平方为2。该公式为假。</p>
+</div>
+<div class="paragraph">
+<p>公式 \(F\) 对于集合 \(S\) 中某个元素 \(x\) 为真，等价于 \(F\) 不是对 \(S\) 中所有的元素 \(x\) 为假。换句话说，以下表述不成立：\(\neg F\) 对于 \(S\) 中所有元素为真。因此，公式</p>
+</div>
+<div class="paragraph text-center">
+<p>(1.1) \((\exists x \in S : F) \equiv \neg (\forall x \in S : \neg F)\)</p>
+</div>
+<div class="paragraph">
+<p>为谓词逻辑的一个恒真命题，也就是收该公式对于标识符 \(S\) 和 \(F\) 所有可能取值都为真。</p>
+</div>
+<div class="paragraph">
+<p>空集 \(\{\}\) 不含任何元素，因此公式 \(\exists x \in \{\}:F\)  \(F\) 都为假。根据（1.1）可得公式 \(\forall x \in \{\}:F\) 必须对于每一个 \(F\) 为真。</p>
+</div>
+<div class="paragraph">
+<p>公式 \(\forall x \in S&gt;F\) 和 \(\exists x \in S&gt;F\) 中的量化（quantification）被称作是有界的（bounded）。其原因是这些公式所做出的断言的主体是一个集合中的元素。无界的量化（unbounded quantification）也是有的。公式 \(\forall x &gt; F\) 就是在说 \(F\) 对于 \(x\) 所有的值都为真，而公式 \(\exists x &gt; F\) 是说至少有一个 \(x\) 的值使得 \(F\) 为真，但这里并没表明该值属于任何一个特定的集合。有界和无界可以被以下的恒真命题联系起来：</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\forall x \in S:F) \equiv (\forall x:(x\in S) \implies F)\)</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\exists x \in S:F) \equiv (\exists x:(x\in S) \wedge F)\)</p>
+</div>
+<div class="paragraph">
+<p>恒真式（1.1）对于无界量词来说同样还是恒真式：</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\exists x :F) \equiv \neg(\forall x: \neg F)\)</p>
+</div>
+<div class="paragraph">
+<p>在写规范的时候，应该尽量去使用有界量化，从而让规范更容易被人和计算机所理解。</p>
+</div>
+<div class="paragraph">
+<p>全称量化概括了逻辑与操作。如果 \(S\) 是一个有限集合，则 \(\forall x \in S:F\) 是将 \(F\) 中的 \(x\) 替换为 \(X\) 中不同元素后得到所有公式的逻辑与连接。例如，</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\forall x \in \{2,3,7\} : x &lt; y^x ) \equiv (2&lt; y^2) \wedge (3&lt;y^3) \wedge (7&lt;y^7)\)</p>
+</div>
+<div class="paragraph">
+<p>有时候当我们提到无限多的公式的逻辑与时，从形式化角度的意思是一个全称量词修饰的公式。例如，对于所有自然数 \(x\) 的公式 \(x \leq y^x\) 的逻辑与就写成 \(\forall x \in Nat:x \leq y^x\)。类似地，存在量化概括了逻辑或操作。</p>
+</div>
+<div class="paragraph">
+<p>逻辑学家使用很多规则用于证明类似（1.1）的恒真命题，但是读者并不需要这些去学习或使用这些规则。读者们对谓词逻辑熟悉只需要达到能够一眼看懂那些简单恒真式的程度。把 \(\forall\) 想成逻辑与以及把 \(\exists\) 想成逻辑或应该能帮助读者熟悉谓词逻辑。例如，从或和与操作的结合律和交换律可得出以下恒真式：</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\forall x \in S : F) \wedge (\forall x \in S:G) \equiv (\forall x \in S: F \wedge G)\)</p>
+</div>
+<div class="paragraph text-center">
+<p>\((\exists x \in S : F) \vee (\exists x \in S:G) \equiv (\exists x \in S: F \vee G)\)</p>
+</div>
+<div class="paragraph">
+<p>for any set \(S\) and formulas \(F\) and \(G\).</p>
+</div>
+<div class="paragraph">
+<p>数学家们会用一些缩写来表示嵌套的量词。例如：</p>
+</div>
+<div class="paragraph">
+<p>\(\forall x \in S, y\in T:F\)  means  \(\forall x \in S : (\forall y\in T:F)\)</p>
+</div>
+<div class="paragraph">
+<p>\(\exists w,x,y,z \in S:F\)  means  \(\exists w \in S: (\exists x \in S : (\exists y\in S: (\exists z \in S: F)))\)</p>
+</div>
+<div class="paragraph">
+<p>对于表达式 \(\exists x \in S:F\)，逻辑学家会说 \(x\) 是一个约束变量或受限变量（bound variable），\(x\) 在 \(F\) 中每一次出现都是被约束的（bound）。例如，\(n\) 是一个在公式 \(\exists n \in Nat:n+1 &gt; n\) 中的受限变量。非受限变量就是所谓的自由变量（free variable），而自由变量在公式中每一此出现都是所谓自由出现（free occurrences）。这种说法有点容易误导读者。一个受限变量其实并不是真正的存在于一个公式，因为替换该变量后该公式并没有被改变。以下两个公式</p>
+</div>
+<div class="paragraph">
+<p>\(\forall n \in Nat, n +1 &gt; n\) and \(\forall x \in Nat, x +1 &gt; x\)</p>
+</div>
+<div class="paragraph">
+<p>是等价的。</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_公式和语言">1.4. 公式和语言</h3>
@@ -852,7 +940,7 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-01 09:00:10 +0200
+Last updated 2020-08-04 20:06:10 +0200
 </div>
 </div>
 <script type="text/x-mathjax-config">
