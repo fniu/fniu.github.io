@@ -782,12 +782,10 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <li><a href="#_前言">前言</a></li>
 <li><a href="#_准备开始">准备开始</a>
 <ul class="sectlevel1">
-<li><a href="#_小而简单的数学">1. 小而简单的数学</a>
+<li><a href="#_些许简单数学">1. 些许简单数学</a>
 <ul class="sectlevel2">
 <li><a href="#_命题逻辑">1.1. 命题逻辑</a></li>
-<li><a href="#_集合">1.2. 集合</a></li>
-<li><a href="#_谓词逻辑">1.3. 谓词逻辑</a></li>
-<li><a href="#_公式和语言">1.4. 公式和语言</a></li>
+<li><a href="#_公式和语言">1.2. 公式和语言</a></li>
 </ul>
 </li>
 <li><a href="#_简单时钟系统">2. 简单时钟系统</a></li>
@@ -810,7 +808,7 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>用些许时序逻辑（temporal logic）将常见的数学串连在一起，就组成了系统规范说明（specification）。正是这个原因，TLA+代码中的大部分都是通用的数学表达式。要写号系统规范，必须要熟悉这些数学表达的方式。可惜的是，大部分大学的计算机系都觉得教好C++比掌握好初等代数学更重要。有的读者可能因此对数学语言的套路不太熟悉。但也不用太担心，我们用到的数学都是相当简单的。如果学习C++还没有摧残了你的逻辑思维能力，学好这本书相关的数学不是什么难事，更何况一般人都是先学数学后学的C++。</p>
+<p>用些许时序逻辑（temporal logic）将常见的数学串连在一起，就组成了系统规范说明（specification）。正是这个原因，TLA+代码中的大部分都是通用的数学表达式。要写号系统规范，必须要熟悉这些数学表达的方式。可惜的是，大部分大学的计算机系都觉得教好C++比掌握好初等代数学更重要。有的读者可能因此对数学语言的套路不太熟悉。但也不用太担心，我们用到的数学都是相当简单的。如果学习C++还没有摧残了你使用逻辑来思考问题的能力，学好这本书相关的数学不是什么难事，更何况一般人都是先学数学后学的C++。</p>
 </div>
 <div class="paragraph">
 <p>从第一章开始我会试着解释我们会用到的数学知识，可能回过头来你会觉得我根本没有必要写下这段说明。</p>
@@ -822,30 +820,163 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 </div>
 </div>
 <div class="sect1">
-<h2 id="_小而简单的数学">1. 小而简单的数学</h2>
+<h2 id="_些许简单数学">1. 些许简单数学</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_命题逻辑">1.1. 命题逻辑</h3>
-
+<div class="paragraph">
+<p>初等代数是关于实数和四则运算（加减乘除四个运算符）的数学。命题逻辑是两个布尔值，真（TRUE）和假（FALSE）加上以下五个运算符：</p>
 </div>
-<div class="sect2">
-<h3 id="_集合">1.2. 集合</h3>
-
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+\(\wedge\)
+</td>
+<td class="hdlist2">
+<p>逻辑与（and）</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\vee\)
+</td>
+<td class="hdlist2">
+<p>逻辑或（or）</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\neg\)
+</td>
+<td class="hdlist2">
+<p>逻辑取反（not）</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\implies\)
+</td>
+<td class="hdlist2">
+<p>逻辑蕴含（implies）</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\equiv\)
+</td>
+<td class="hdlist2">
+<p>逻辑等价（is equivalent to）</p>
+</td>
+</tr>
+</table>
 </div>
-<div class="sect2">
-<h3 id="_谓词逻辑">1.3. 谓词逻辑</h3>
+<div class="paragraph">
+<p>在学习初等代数的时候，我们得记住加法乘法表，以及多位数的运算法则。命题逻辑就简单的多了，原因是命题逻辑只有两个值，真和假。掌握逻辑运算，只需要了解以下五个布尔运算符的定义：</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+\(\wedge\)
+</td>
+<td class="hdlist2">
+<p>\(F \wedge G\) 为真，当且仅当 \(F\) 和 \(G\) 都为真。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\vee\)
+</td>
+<td class="hdlist2">
+<p>\(F \vee G\) 为真，当且仅当 \(F\) 或者 \(G\) 为真（当然也包含两者都为真的情况，因为我们一般用“或”来表示”或“或者”与“。）</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\neg\)
+</td>
+<td class="hdlist2">
+<p>\(\neg F\) 为真，当且仅当 \(F\) 为假。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\implies\)
+</td>
+<td class="hdlist2">
+<p>\(F \implies G\) 为真，当且仅当 \(F\) 为假，或者 \(G\) 为真。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\equiv\)
+</td>
+<td class="hdlist2">
+<p>\(F \equiv G\) 为真，当且仅当 \(F\) 和 \(G\) 同为真，或同为假。</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>我们也可以用真值表（truth table）来描述这些运算符的含义。下面这个真值表给出 \(F\) 和 \(G\) 取值的所有组合所对应的 \(F \implies G\) 的值。</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 40%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(F \implies G\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">假</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">假</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">假</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">假</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">假</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">真</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>有了集合之后，就自然而然地想去声明某个公式对于一个集合中所有的元素都为真，或者只对一个集合中某些元素为真。谓词逻辑（predicate logic）相对于命题逻辑， 增加了两个量词（quantifiers）：</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(\forall\) 全称量词</p>
-</li>
-<li>
-<p>\(\exists\) 存在量词</p>
-</li>
-</ul>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+\(\forall\)
+</td>
+<td class="hdlist2">
+<p>全称量词</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\(\exists\)
+</td>
+<td class="hdlist2">
+<p>存在量词</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>公式 \(\forall x \in S : F\) 表示公式 \(F\) 对于集合S中<strong>每一个</strong>元素来说都为真。例如，\(\forall n \in Nat : n + 1 &gt; n\) 表示公式 \(n + 1 &gt; n\) 对于每一个自然数来说都为真。该公式确实为真。</p>
@@ -863,7 +994,7 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <p>为谓词逻辑的一个恒真命题，也就是收该公式对于标识符 \(S\) 和 \(F\) 所有可能取值都为真。</p>
 </div>
 <div class="paragraph">
-<p>空集 \(\{\}\) 不含任何元素，因此公式 \(\exists x \in \{\}:F\)  \(F\) 都为假。根据（1.1）可得公式 \(\forall x \in \{\}:F\) 必须对于每一个 \(F\) 为真。</p>
+<p>空集 \(\{\}\) 不含任何元素，因此公式 \(\exists x \in \{\}:F\) 对于任何 \(F\) 都为假。根据（1.1）可得公式 \(\forall x \in \{\}:F\) 对于任何 \(F\) 都为真。</p>
 </div>
 <div class="paragraph">
 <p>公式 \(\forall x \in S&gt;F\) 和 \(\exists x \in S&gt;F\) 中的量化（quantification）被称作是有界的（bounded）。其原因是这些公式所做出的断言的主体是一个集合中的元素。无界的量化（unbounded quantification）也是有的。公式 \(\forall x &gt; F\) 就是在说 \(F\) 对于 \(x\) 所有的值都为真，而公式 \(\exists x &gt; F\) 是说至少有一个 \(x\) 的值使得 \(F\) 为真，但这里并没表明该值属于任何一个特定的集合。有界和无界可以被以下的恒真命题联系起来：</p>
@@ -902,29 +1033,26 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; -webkit-
 <p>\((\exists x \in S : F) \vee (\exists x \in S:G) \equiv (\exists x \in S: F \vee G)\)</p>
 </div>
 <div class="paragraph">
-<p>for any set \(S\) and formulas \(F\) and \(G\).</p>
+<p>for any set \(S\) 和 formulas \(F\) and \(G\).</p>
 </div>
 <div class="paragraph">
 <p>数学家们会用一些缩写来表示嵌套的量词。例如：</p>
 </div>
 <div class="paragraph">
-<p>\(\forall x \in S, y\in T:F\)  means  \(\forall x \in S : (\forall y\in T:F)\)</p>
+<p>\(\forall x \in S, y\in T:F\)  意味着  \(\forall x \in S : (\forall y\in T:F)\)</p>
 </div>
 <div class="paragraph">
-<p>\(\exists w,x,y,z \in S:F\)  means  \(\exists w \in S: (\exists x \in S : (\exists y\in S: (\exists z \in S: F)))\)</p>
+<p>\(\exists w,x,y,z \in S:F\)  意味着  \(\exists w \in S: (\exists x \in S : (\exists y\in S: (\exists z \in S: F)))\)</p>
 </div>
 <div class="paragraph">
-<p>对于表达式 \(\exists x \in S:F\)，逻辑学家会说 \(x\) 是一个约束变量或受限变量（bound variable），\(x\) 在 \(F\) 中每一次出现都是被约束的（bound）。例如，\(n\) 是一个在公式 \(\exists n \in Nat:n+1 &gt; n\) 中的受限变量。非受限变量就是所谓的自由变量（free variable），而自由变量在公式中每一此出现都是所谓自由出现（free occurrences）。这种说法有点容易误导读者。一个受限变量其实并不是真正的存在于一个公式，因为替换该变量后该公式并没有被改变。以下两个公式</p>
+<p>对于表达式 \(\exists x \in S:F\)，逻辑学家会说 \(x\) 是一个约束变量或受限变量（bound variable），\(x\) 在 \(F\) 中每一次出现都是被约束的（bound）。例如，\(n\) 是一个在公式 \(\exists n \in Nat:n+1 &gt; n\) 中的受限变量。非受限变量就是所谓的自由变量（free variable），而自由变量在公式中每一此出现都是所谓自由出现（free occurrences）。这种说法有点容易误导读者：因为替换该变量后该公式并没有被改变，一个受限变量其实并不是真正的出现在一个公式里。具体来说，以下两个公式是等价的。</p>
 </div>
 <div class="paragraph">
-<p>\(\forall n \in Nat, n +1 &gt; n\) and \(\forall x \in Nat, x +1 &gt; x\)</p>
-</div>
-<div class="paragraph">
-<p>是等价的。</p>
+<p>\(\forall n \in Nat, n +1 &gt; n\) 和 \(\forall x \in Nat, x +1 &gt; x\)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_公式和语言">1.4. 公式和语言</h3>
+<h3 id="_公式和语言">1.2. 公式和语言</h3>
 <div class="paragraph">
 <p><span class="icon"><i class="fa fa-square-o"></i></span></p>
 </div>
